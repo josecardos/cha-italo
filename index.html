@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chá do Ítalo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Nunito:wght@400;600;700&display=swap">
+<style>
+:root {
+  --bege: #F5ECE0;
+  --bege-2: #EADBC6;
+  --papel: #FCF8F1;
+  --azul: #4F8AB5;
+  --azul-claro: #DCEAF3;
+  --tinta: #2B4358;
+  --tinta-2: #5B6F82;
+  --linha: #E0D0B8;
+  --erro: #A6402F;
+  --f-display: "Baloo 2", "Trebuchet MS", system-ui, sans-serif;
+  --f-corpo: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bege);
+  color: var(--tinta);
+  font-family: var(--f-corpo);
+  font-size: 16px;
+  line-height: 1.5;
+  padding-block: 28px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.pagina { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
+
+.capa { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
+.capa img { width: clamp(190px, 46vw, 250px); height: auto; aspect-ratio: 1 / 1; mix-blend-mode: multiply; flex: none; }
+.capa-texto { flex: 1 1 240px; min-width: 0; }
+.rotulo { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--azul); margin: 0 0 4px; }
+h1 { font-family: var(--f-display); font-weight: 700; font-size: clamp(40px, 11vw, 56px); line-height: 1.02; margin: 0 0 10px; text-wrap: balance; }
+.capa-texto p { margin: 0; color: var(--tinta-2); max-width: 36ch; }
+
+.resumo { display: flex; flex-direction: column; gap: 8px; }
+.resumo-linha { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.resumo strong { font-family: var(--f-display); font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.resumo small { color: var(--tinta-2); font-size: 14px; }
+.aviso { margin: 0; padding: 10px 14px; border-radius: 12px; background: var(--azul-claro); font-size: 14px; }
+
+.lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.item { background: var(--papel); border: 1px solid var(--linha); border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.item-topo { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.item-titulo { min-width: 0; }
+.item-titulo h2 { font-family: var(--f-display); font-weight: 600; font-size: 22px; line-height: 1.2; margin: 0; display: flex; align-items: center; gap: 10px; }
+.item-titulo h2::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--cor); flex: none; }
+.item-titulo small { display: block; color: var(--tinta-2); font-size: 14px; margin-top: 2px; }
+
+.nomes { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.nomes li { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: var(--azul-claro); border-radius: 12px; padding: 8px 12px; min-width: 0; }
+.quem { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; min-width: 0; overflow-wrap: anywhere; }
+.quem svg { flex: none; }
+
+button { font: inherit; cursor: pointer; }
+.btn { border: 0; border-radius: 999px; padding: 9px 18px; font-weight: 700; background: var(--azul); color: #fff; min-height: 40px; }
+.btn:hover:not(:disabled) { background: #3F77A0; }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-sec { background: transparent; color: var(--tinta); border: 1px solid var(--linha); }
+.btn-sec:hover:not(:disabled) { background: var(--bege); }
+.link { border: 0; background: none; padding: 6px 2px; color: var(--tinta-2); text-decoration: underline; font-size: 14px; flex: none; }
+.link:hover { color: var(--erro); }
+button:focus-visible, input:focus-visible { outline: 3px solid var(--azul); outline-offset: 2px; }
+
+form { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; }
+form .campo { flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+form label { font-size: 13px; font-weight: 700; color: var(--tinta-2); }
+input { font: inherit; color: var(--tinta); background: #fff; border: 1px solid var(--linha); border-radius: 12px; padding: 9px 12px; min-height: 42px; width: 100%; }
+.erro { flex-basis: 100%; margin: 0; color: var(--erro); font-size: 14px; }
+</style>
+</head>
+<body>
+<main class="pagina">
+  <header class="capa">
+    <img src="ursinho.jpg" width="720" height="720" alt="Ursinho de pelúcia segurando balões azuis e bege entre nuvens">
+    <div class="capa-texto">
+      <p class="rotulo">Lista de presentes</p>
+      <h1>Chá do Ítalo</h1>
+      <p>Escolha o que você vai levar, inclusive o tamanho da fralda, e coloque o seu nome. Mais de uma pessoa pode levar o mesmo item.</p>
+    </div>
+  </header>
+
+  <section class="resumo" aria-live="polite">
+    <div class="resumo-linha">
+      <strong id="contagem">Nenhuma marcação ainda</strong>
+      <small id="estado">Carregando a lista…</small>
+    </div>
+    <p class="aviso" id="aviso" hidden></p>
+  </section>
+
+  <ul class="lista" id="itens"></ul>
+</main>
+
+<script>
+(function () {
+  var API = "/api/claims";
+  var GRUPOS = [
+    { id: "fralda-p", nome: "Fralda P", cor: "#86B8DA" },
+    { id: "fralda-m", nome: "Fralda M", cor: "#4F8AB5" },
+    { id: "fralda-g", nome: "Fralda G", cor: "#2F6690" },
+    { id: "leno", nome: "Lenço umedecido", cor: "#C9A57A" },
+    { id: "sabonete", nome: "Sabonete", cor: "#8CBFCB" }
+  ];
+  var CHECK = '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#3A8664"/><path d="M4.6 8.3l2.2 2.2 4.6-4.9" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  var claims = [], carregou = false, falha = "";
+  var aberto = null, nomeDigitado = "", erro = "", ocupado = false;
+  var tokens = {};
+
+  function ler(k, p) { try { var v = localStorage.getItem(k); return v === null ? p : v; } catch (e) { return p; } }
+  function gravar(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  try { tokens = JSON.parse(ler("cha-italo-tokens", "{}")) || {}; } catch (e) { tokens = {}; }
+
+  var elItens = document.getElementById("itens");
+  var elContagem = document.getElementById("contagem");
+  var elEstado = document.getElementById("estado");
+  var elAviso = document.getElementById("aviso");
+
+  function el(tag, cls, txt) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (txt !== undefined) e.textContent = txt;
+    return e;
+  }
+
+  function mensagemDeFalha(status, corpo) {
+    if (status === 404) return "A API não foi encontrada. O site precisa estar publicado na Vercel (pasta api na raiz do projeto).";
+    if (corpo && corpo.erro === "banco") return "O banco de dados ainda não está conectado na Vercel (Storage → Upstash Redis).";
+    return "Não foi possível abrir a lista agora. Recarregue a página em instantes.";
+  }
+
+  async function carregar() {
+    try {
+      var r = await fetch(API, { cache: "no-store" });
+      var corpo = null;
+      try { corpo = await r.json(); } catch (e) {}
+      if (!r.ok || !Array.isArray(corpo)) { falha = mensagemDeFalha(r.status, corpo); }
+      else { claims = corpo.filter(function (c) { return c && c.id && c.name && c.item; }); carregou = true; falha = ""; }
+    } catch (e) {
+      falha = "Sem internet. Confira a conexão e tente de novo.";
+    }
+    render();
+  }
+
+  async function confirmar(g) {
+    var nome = nomeDigitado.replace(/\s+/g, " ").trim();
+    if (!nome) { erro = "Escreva o seu nome para marcar o item."; render(); return; }
+    ocupado = true; erro = ""; render();
+    try {
+      var r = await fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ item: g.id, name: nome }) });
+      if (r.status === 409) erro = "Esse nome já está marcado em " + g.nome + ".";
+      else if (!r.ok) { var c = null; try { c = await r.json(); } catch (e) {} erro = mensagemDeFalha(r.status, c); }
+      else {
+        var j = await r.json();
+        tokens[j.id] = j.token; gravar("cha-italo-tokens", JSON.stringify(tokens));
+        gravar("cha-italo-nome", nome.slice(0, 40));
+        aberto = null;
+      }
+    } catch (e) { erro = "Sem internet. Confira a conexão e tente de novo."; }
+    ocupado = false;
+    await carregar();
+  }
+
+  async function desmarcar(id) {
+    ocupado = true; render();
+    try {
+      var r = await fetch(API + "?id=" + encodeURIComponent(id), { method: "DELETE", headers: { "x-token": tokens[id] || "" } });
+      if (r.ok) { delete tokens[id]; gravar("cha-italo-tokens", JSON.stringify(tokens)); }
+    } catch (e) {}
+    ocupado = false;
+    await carregar();
+  }
+
+  function cartao(g) {
+    var gente = claims.filter(function (c) { return c.item === g.id; }).sort(function (a, b) { return (a.at || 0) - (b.at || 0); });
+    var li = el("li", "item");
+    li.style.setProperty("--cor", g.cor);
+
+    var topo = el("div", "item-topo");
+    var tit = el("div", "item-titulo");
+    tit.appendChild(el("h2", null, g.nome));
+    tit.appendChild(el("small", null, gente.length === 0 ? "Ninguém marcou ainda" : gente.length === 1 ? "1 pessoa vai levar" : gente.length + " pessoas vão levar"));
+    topo.appendChild(tit);
+    if (aberto !== g.id) {
+      var b = el("button", "btn", "Vou levar");
+      b.type = "button"; b.disabled = !carregou || ocupado;
+      b.addEventListener("click", function () { aberto = g.id; erro = ""; nomeDigitado = nomeDigitado || ler("cha-italo-nome", ""); render(true); });
+      topo.appendChild(b);
+    }
+    li.appendChild(topo);
+
+    if (gente.length) {
+      var ul = el("ul", "nomes");
+      gente.forEach(function (c) {
+        var n = el("li");
+        var q = el("span", "quem");
+        q.insertAdjacentHTML("beforeend", CHECK);
+        q.appendChild(el("span", null, c.name));
+        n.appendChild(q);
+        if (tokens[c.id]) {
+          var d = el("button", "link", "Desmarcar");
+          d.type = "button"; d.disabled = ocupado;
+          d.addEventListener("click", function () { desmarcar(c.id); });
+          n.appendChild(d);
+        }
+        ul.appendChild(n);
+      });
+      li.appendChild(ul);
+    }
+
+    if (aberto === g.id) {
+      var f = document.createElement("form");
+      var campo = el("div", "campo");
+      var lb = el("label", null, "Seu nome"); lb.htmlFor = "campo-nome";
+      var inp = document.createElement("input");
+      inp.id = "campo-nome"; inp.type = "text"; inp.maxLength = 40; inp.autocomplete = "name";
+      inp.placeholder = "Ex.: Maria Silva"; inp.value = nomeDigitado;
+      inp.addEventListener("input", function () { nomeDigitado = inp.value; });
+      campo.appendChild(lb); campo.appendChild(inp);
+      var ok = el("button", "btn", "Confirmar"); ok.type = "submit"; ok.disabled = ocupado;
+      var no = el("button", "btn btn-sec", "Cancelar"); no.type = "button";
+      no.addEventListener("click", function () { aberto = null; erro = ""; render(); });
+      f.appendChild(campo); f.appendChild(ok); f.appendChild(no);
+      if (erro) { var p = el("p", "erro", erro); p.setAttribute("role", "alert"); f.appendChild(p); }
+      f.addEventListener("submit", function (ev) { ev.preventDefault(); confirmar(g); });
+      li.appendChild(f);
+    }
+    return li;
+  }
+
+  function render(focar) {
+    // não redesenha enquanto a pessoa digita o nome (a lista atualiza sozinha a cada 15s)
+    elItens.textContent = "";
+    GRUPOS.forEach(function (g) { elItens.appendChild(cartao(g)); });
+
+    var total = claims.length;
+    elContagem.textContent = total === 0 ? "Nenhuma marcação ainda" : total === 1 ? "1 marcação na lista" : total + " marcações na lista";
+
+    if (falha) {
+      elEstado.textContent = carregou ? "Sem conexão" : "Sem conexão com a lista";
+      elAviso.hidden = false;
+      elAviso.textContent = falha;
+    } else {
+      elEstado.textContent = carregou ? "Atualizada" : "Carregando a lista…";
+      elAviso.hidden = true;
+    }
+
+    if (focar || (aberto && erro)) {
+      var c = document.getElementById("campo-nome");
+      if (c) { c.focus(); var n = c.value.length; try { c.setSelectionRange(n, n); } catch (e) {} }
+    }
+  }
+
+  function atualizarSeLivre() { if (!document.hidden && !ocupado && !aberto) carregar(); }
+
+  render();
+  carregar();
+  setInterval(atualizarSeLivre, 15000);
+  document.addEventListener("visibilitychange", atualizarSeLivre);
+})();
+</script>
+</body>
+</html>
